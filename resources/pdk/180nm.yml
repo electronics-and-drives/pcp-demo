@@ -1,0 +1,126 @@
+include:
+  - path: "/opt/pdk/gpdk180_v3.3/models/spectre/gpdk.scs"
+    section: "stat"
+testbench:
+  cl: 5.0e-12
+  i0: 3.0e-6
+  rl: 1.0e8
+  vs: 0.5
+  vdd: 1.8
+  scl: 1.0
+defaults:
+  settling_percentage: 5.0
+  dev: 1.0e-4
+constraints:
+  length:
+    min: 0.18e-6
+    max: 20.0e-6
+    grid: 25.0e-9
+  width:
+    min: 0.40e-6
+    max: 100.0e-6
+    grid: 50.0e-9
+devices:
+  dcop:
+    prefix: "DUT."
+    suffix: ""
+    parameters:
+      - "gm"
+      - "gds"
+      - "id"
+      - "gmoverid"
+      - "fug"
+      - "vdsat"
+      - "vgs"
+      - "vds"
+      - "vbs"
+      - "gmb"
+      - "vth"
+      - "self_gain"
+      - "region"
+  dcmatch:
+    NMOS:
+      - prefix: "DUT."
+        suffix: ".dvthn(m).Contribution"
+        reference: "dvth_contrib"
+      - prefix: "DUT."
+        suffix: ".dvthn(m).Sensitivity"
+        reference: "dvth_sens"
+      - prefix: "DUT."
+        suffix: ".toxn(m).Contribution"
+        reference: "tox_contrib"
+      - prefix: "DUT."
+        suffix: ".toxn(m).Sensitivity"
+        reference: "tox_sens"
+      - prefix: "DUT."
+        suffix: ".dxln(m).Contribution"
+        reference: "dxl_contrib"
+      - prefix: "DUT."
+        suffix: ".dxln(m).Sensitivity"
+        reference: "dxl_sens"
+      - prefix: "DUT."
+        suffix: ".dxwn(m).Contribution"
+        reference: "dxw_contrib"
+      - prefix: "DUT."
+        suffix: ".dxwn(m).Sensitivity"
+        reference: "dxw_sens"
+      - prefix: "DUT."
+        suffix: ".hdifn(m).Contribution"
+        reference: "hdif_contrib"
+      - prefix: "DUT."
+        suffix: ".hdifn(m).Sensitivity"
+        reference: "hdif_sens"
+    PMOS:
+      - prefix: "DUT."
+        suffix: ".dvthp(m).Contribution"
+        reference: "dvth_contrib"
+      - prefix: "DUT."
+        suffix: ".dvthp(m).Sensitivity"
+        reference: "dvth_sens"
+      - prefix: "DUT."
+        suffix: ".toxp(m).Contribution"
+        reference: "tox_contrib"
+      - prefix: "DUT."
+        suffix: ".toxp(m).Sensitivity"
+        reference: "tox_sens"
+      - prefix: "DUT."
+        suffix: ".dxlp(m).Contribution"
+        reference: "dxl_contrib"
+      - prefix: "DUT."
+        suffix: ".dxlp(m).Sensitivity"
+        reference: "dxl_sens"
+      - prefix: "DUT."
+        suffix: ".dxwp(m).Contribution"
+        reference: "dxw_contrib"
+      - prefix: "DUT."
+        suffix: ".dxwp(m).Sensitivity"
+        reference: "dxw_sens"
+      - prefix: "DUT."
+        suffix: ".hdifp(m).Contribution"
+        reference: "hdif_contrib"
+      - prefix: "DUT."
+        suffix: ".hdifp(m).Sensitivity"
+        reference: "hdif_sens"
+generator:
+  nmos: 
+    id: "nmos1"
+    derived:
+      - "as=(((WIDTH) / (1)) < 599.5n) ? (((((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n)) * 600n) + (((WIDTH) / (1)) * 200n)) + (floor(((1) - 1) / 2.0) * (((((400n) - 200n) + 400n) * 600n) + (((WIDTH) / (1)) * 400n))) + ((((1) / 2) - floor((1) / 2) == 0) ? ((((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n)) * 600n) + (((WIDTH) / (1)) * 200n)) : 0)) / 1 : ((((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n)) * ((WIDTH) / (1))) + (floor(((1) - 1) / 2.0) * ((((400n) - 200n) + 400n) * ((WIDTH) / (1)))) + ((((1) / 2) - floor((1) / 2) == 0) ? (((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n)) * ((WIDTH) / (1))) : 0)) / 1"
+      - "ad=(((WIDTH) / (1)) < 599.5n) ? ((floor((1) / 2.0) * (((((400n) - 200n) + 400n) * 600n) + (((WIDTH) / (1)) * 400n))) + ((((1) / 2) - floor((1) / 2) != 0) ? ((((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n)) * 600n) + (((WIDTH) / (1)) * 200n)) : 0)) / 1 : ((floor((1) / 2.0) * ((((400n) - 200n) + 400n) * ((WIDTH) / (1)))) + ((((1) / 2) - floor((1) / 2) != 0) ? (((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n)) * ((WIDTH) / (1))) : 0)) / 1"
+      - "ps=(((WIDTH) / (1)) < 599.5n) ? (((2 * ((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n))) + 1.6u) + (floor(((1) - 1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + 2u)) + ((((1) / 2) - floor((1) / 2) == 0) ? ((2 * ((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n))) + 1.6u) : 0)) / 1 : (((2 * ((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n))) + (2 * ((WIDTH) / (1)))) + (floor(((1) - 1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + (2 * ((WIDTH) / (1))))) + ((((1) / 2) - floor((1) / 2) == 0) ? ((2 * ((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n))) + (2 * ((WIDTH) / (1)))) : 0)) / 1"
+      - "pd=(((WIDTH) / (1)) < 599.5n) ? ((floor((1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + 2u)) + ((((1) / 2) - floor((1) / 2) != 0) ? ((2 * ((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n))) + 1.6u) : 0)) / 1 : ((floor((1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + (2 * ((WIDTH) / (1))))) + ((((1) / 2) - floor((1) / 2) != 0) ? ((2 * ((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n))) + (2 * ((WIDTH) / (1)))) : 0)) / 1"
+  pmos: 
+    id: "pmos1"
+    derived:
+      - "as=(((WIDTH) / (1)) < 599.5n) ? (((((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n)) * 600n) + (((WIDTH) / (1)) * 200n)) + (floor(((1) - 1) / 2.0) * (((((400n) - 200n) + 400n) * 600n) + (((WIDTH) / (1)) * 400n))) + ((((1) / 2) - floor((1) / 2) == 0) ? ((((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n)) * 600n) + (((WIDTH) / (1)) * 200n)) : 0)) / 1 : ((((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n)) * ((WIDTH) / (1))) + (floor(((1) - 1) / 2.0) * ((((400n) - 200n) + 400n) * ((WIDTH) / (1)))) + ((((1) / 2) - floor((1) / 2) == 0) ? (((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n)) * ((WIDTH) / (1))) : 0)) / 1"
+      - "ad=(((WIDTH) / (1)) < 599.5n) ? ((floor((1) / 2.0) * (((((400n) - 200n) + 400n) * 600n) + (((WIDTH) / (1)) * 400n))) + ((((1) / 2) - floor((1) / 2) != 0) ? ((((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n)) * 600n) + (((WIDTH) / (1)) * 200n)) : 0)) / 1 : ((floor((1) / 2.0) * ((((400n) - 200n) + 400n) * ((WIDTH) / (1)))) + ((((1) / 2) - floor((1) / 2) != 0) ? (((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n)) * ((WIDTH) / (1))) : 0)) / 1"
+      - "ps=(((WIDTH) / (1)) < 599.5n) ? (((2 * ((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n))) + 1.6u) + (floor(((1) - 1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + 2u)) + ((((1) / 2) - floor((1) / 2) == 0) ? ((2 * ((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n))) + 1.6u) : 0)) / 1 : (((2 * ((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n))) + (2 * ((WIDTH) / (1)))) + (floor(((1) - 1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + (2 * ((WIDTH) / (1))))) + ((((1) / 2) - floor((1) / 2) == 0) ? ((2 * ((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n))) + (2 * ((WIDTH) / (1)))) : 0)) / 1"
+      - "pd=(((WIDTH) / (1)) < 599.5n) ? ((floor((1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + 2u)) + ((((1) / 2) - floor((1) / 2) != 0) ? ((2 * ((200n > (((400n) - 200n) + 400n)) ? 200n : (((400n) - 200n) + 400n))) + 1.6u) : 0)) / 1 : ((floor((1) / 2.0) * ((2 * (((400n) - 200n) + 400n)) + (2 * ((WIDTH) / (1))))) + ((((1) / 2) - floor((1) / 2) != 0) ? ((2 * ((400n > (((400n) - 200n) + 400n)) ? 400n : (((400n) - 200n) + 400n))) + (2 * ((WIDTH) / (1)))) : 0)) / 1"
+  cap:
+    id: "mimcap"
+    derived: "area=(WIDTH)*(LENGTH) perim=2*(WIDTH)+2*(LENGTH) m=MULT"
+    calc: "(Wcap*Lcap) * 1.0e-3 + (2 * (Wres + Lres)) * 100e-12"
+  res:
+    id: "gpdk180_polyres"
+    derived: "sl=(((7.5)*((WIDTH)-(0))*(1))/((7.5)*(1)))+(0) w=WIDTH"
+    calc: "((7.5 * Lres) / Wres) + 10"

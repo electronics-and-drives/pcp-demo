@@ -1,0 +1,144 @@
+include:
+  - path: "/opt/pdk/gpdk045_v_6_0/models/spectre/gpdk045.scs"
+    section: "mc"
+testbench:
+  cl: 5.0e-12
+  i0: 3.0e-6
+  rl: 1.0e8
+  vs: 0.5
+  vdd: 1.8
+  scl: 1.0
+defaults:
+  settling_percentage: 5.0
+  dev: 1.0e-4
+constraints:
+  length:
+    min: 45.0e-9
+    max: 20.0e-6
+    grid: 25.0e-9
+  width:
+    min: 0.10e-6
+    max: 100.0e-6
+    grid: 50.0e-9
+devices:
+  dcop:
+    prefix: "DUT."
+    suffix: ""
+    parameters:
+      - "gm"
+      - "gds"
+      - "id"
+      - "gmoverid"
+      - "fug"
+      - "vdsat"
+      - "vgs"
+      - "vds"
+      - "vbs"
+      - "gmb"
+      - "vth"
+      - "self_gain"
+      - "region"
+  dcmatch:
+    NMOS:
+      - prefix: "DUT."
+        suffix: ".dvthn(m).Contribution"
+        reference: "dvth_contrib"
+      - prefix: "DUT."
+        suffix: ".dvthn(m).Sensitivity"
+        reference: "dvth_sens"
+      - prefix: "DUT."
+        suffix: ".toxn(m).Contribution"
+        reference: "tox_contrib"
+      - prefix: "DUT."
+        suffix: ".toxn(m).Sensitivity"
+        reference: "tox_sens"
+      - prefix: "DUT."
+        suffix: ".dxln(m).Contribution"
+        reference: "dxl_contrib"
+      - prefix: "DUT."
+        suffix: ".dxln(m).Sensitivity"
+        reference: "dxl_sens"
+      - prefix: "DUT."
+        suffix: ".dxwn(m).Contribution"
+        reference: "dxw_contrib"
+      - prefix: "DUT."
+        suffix: ".dxwn(m).Sensitivity"
+        reference: "dxw_sens"
+      - prefix: "DUT."
+        suffix: ".hdifn(m).Contribution"
+        reference: "hdif_contrib"
+      - prefix: "DUT."
+        suffix: ".hdifn(m).Sensitivity"
+        reference: "hdif_sens"
+    PMOS:
+      - prefix: "DUT."
+        suffix: ".dvthp(m).Contribution"
+        reference: "dvth_contrib"
+      - prefix: "DUT."
+        suffix: ".dvthp(m).Sensitivity"
+        reference: "dvth_sens"
+      - prefix: "DUT."
+        suffix: ".toxp(m).Contribution"
+        reference: "tox_contrib"
+      - prefix: "DUT."
+        suffix: ".toxp(m).Sensitivity"
+        reference: "tox_sens"
+      - prefix: "DUT."
+        suffix: ".dxlp(m).Contribution"
+        reference: "dxl_contrib"
+      - prefix: "DUT."
+        suffix: ".dxlp(m).Sensitivity"
+        reference: "dxl_sens"
+      - prefix: "DUT."
+        suffix: ".dxwp(m).Contribution"
+        reference: "dxw_contrib"
+      - prefix: "DUT."
+        suffix: ".dxwp(m).Sensitivity"
+        reference: "dxw_sens"
+      - prefix: "DUT."
+        suffix: ".hdifp(m).Contribution"
+        reference: "hdif_contrib"
+      - prefix: "DUT."
+        suffix: ".hdifp(m).Sensitivity"
+        reference: "hdif_sens"
+generator:
+  nmos: 
+    id: "g45n1svt"
+    derived:
+      - "nf=ceil(((WIDTH) - 5p) / (10u))"
+      - "as=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : (((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1"
+      - "ad=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1"
+      - "ps=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (((2 * (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n))) + 340n) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((2 * (((60n) - 0) + 60n)) + 440n)) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((2 * (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n))) + 340n) : 0)) / 1 : (((2 * (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((2 * (60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((2 * (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) : 0)) / 1"
+      - "pd=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((2 * (((60n) - 0) + 60n)) + 440n)) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((2 * (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n))) + 340n) : 0)) / 1 : ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((2 * (60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((2 * (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) : 0)) / 1"
+      - "nrd=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1 / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))))"
+      - "nrs=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : (((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1 / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))))"
+      - "sa=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))"
+      - "sb=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))"
+      - "sd=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (((60n) - 0) + 60n) + (2*5e-08) : (60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n))"
+      - "sca=(( ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * ( (((1u) * (1u) / ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)) - ((1u) * (1u) / (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH))) + ((1u) * (1u) / ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)) - ((1u) * (1u)/ (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)))) + ( LENGTH * ( (((1u) * (1u) / (60n)) - ((1u) * (1u) / ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))) + ((1u) * (1u) / (60n)) - ((1u) * (1u)/ ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))))) / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * LENGTH)"
+      - "scb=((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/10 + (1u)/100)*exp(-10 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/10 + (1u)/100)*exp(-10 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)) + (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/10 + (1u)/100)*exp(-10 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/10 + (1u)/100)*exp(-10 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)))) + (LENGTH * (((60n)/10 + (1u)/100)*exp(-10 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/10 + (1u)/100)*exp(-10 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u)) + ((60n)/10 + (1u)/100)*exp(-10 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/10 + (1u)/100)*exp(-10 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u))))) / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * LENGTH)"
+      - "scc=((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/20 + (1u)/400)*exp(-20 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/20 + (1u)/400)*exp(-20 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)) + (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/20 + (1u)/400)*exp(-20 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/20 + (1u)/400)*exp(-20 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)))) + (LENGTH * (((60n)/20 + (1u)/400)*exp(-20 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/20 + (1u)/400)*exp(-20 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u)) + ((60n)/20 + (1u)/400)*exp(-20 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/20 + (1u)/400)*exp(-20 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u))))) / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * LENGTH)"
+  pmos: 
+    id: "g45p1svt"
+    derived:
+      - "nf=ceil(((WIDTH) - 5p) / (10u))"
+      - "as=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : (((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1"
+      - "ad=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1"
+      - "ps=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (((2 * (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n))) + 340n) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((2 * (((60n) - 0) + 60n)) + 440n)) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((2 * (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n))) + 340n) : 0)) / 1 : (((2 * (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((2 * (60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((2 * (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) : 0)) / 1"
+      - "pd=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((2 * (((60n) - 0) + 60n)) + 440n)) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((2 * (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n))) + 340n) : 0)) / 1 : ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((2 * (60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((2 * (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))) + (2 * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) : 0)) / 1"
+      - "nrd=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : ((floor((ceil(((WIDTH) - 5p) / (10u))) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) != 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1 / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))))"
+      - "nrs=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? ((((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * (((((60n) - 0) + 60n) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 100n))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? (((50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) * 120n) + (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * 50n)) : 0)) / 1 : (((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) + (floor(((ceil(((WIDTH) - 5p) / (10u))) - 1) / 2.0) * ((60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))) + ((((ceil(((WIDTH) - 5p) / (10u))) / 2) - floor((ceil(((WIDTH) - 5p) / (10u))) / 2) == 0) ? ((100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n)) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) : 0)) / 1 / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))) * ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * (ceil(((WIDTH) - 5p) / (10u))))"
+      - "sa=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))"
+      - "sb=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))"
+      - "sd=(((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (((60n) - 0) + 60n) + (2*5e-08) : (60n > (((60n) - 0) + 50n) ? 60n : (((60n) - 0) + 50n))"
+      - "sca=(( ((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * ( (((1u) * (1u) / ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)) - ((1u) * (1u) / (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH))) + ((1u) * (1u) / ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)) - ((1u) * (1u)/ (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)))) + ( LENGTH * ( (((1u) * (1u) / (60n)) - ((1u) * (1u) / ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))) + ((1u) * (1u) / (60n)) - ((1u) * (1u)/ ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))))))) / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * LENGTH)"
+      - "scb=((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/10 + (1u)/100)*exp(-10 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/10 + (1u)/100)*exp(-10 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)) + (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/10 + (1u)/100)*exp(-10 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/10 + (1u)/100)*exp(-10 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)))) + (LENGTH * (((60n)/10 + (1u)/100)*exp(-10 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/10 + (1u)/100)*exp(-10 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u)) + ((60n)/10 + (1u)/100)*exp(-10 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/10 + (1u)/100)*exp(-10 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u))))) / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * LENGTH)"
+      - "scc=((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/20 + (1u)/400)*exp(-20 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/20 + (1u)/400)*exp(-20 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)) + (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)/20 + (1u)/400)*exp(-20 * ((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n) / (1u)) - ((((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH)/20 + (1u)/400)*exp(-20 * (((((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) < 119.5n) ? (50n > (((60n) - 0) + 60n) ? 50n : (((60n) - 0) + 60n)) + 5e-08 : (100n > (((60n) - 0) + 80n) ? 100n : (((60n) - 0) + 80n))+60n)+LENGTH) / (1u)))) + (LENGTH * (((60n)/20 + (1u)/400)*exp(-20 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/20 + (1u)/400)*exp(-20 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u)) + ((60n)/20 + (1u)/400)*exp(-20 * (60n) / (1u)) - (((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))))/20 + (1u)/400)*exp(-20 * ((60n)+((WIDTH) / (ceil(((WIDTH) - 5p) / (10u))))) / (1u))))) / (((WIDTH) / (ceil(((WIDTH) - 5p) / (10u)))) * LENGTH)"
+  cap:
+    id: "g45cmim " 
+    derived: "w=WIDTH l=LENGTH m=MULT"
+    calc: "(Wcap * Lcap) * 1.025e-3 + (2 * (Wcap + Lcap)) * 242.5e-12"
+  res:
+    id: "resm1_pcell_0 " 
+    derived: "segL=LENGTH segW=WIDTH"
+    calc: "(73.6e-3 * Lres) / Wres"
