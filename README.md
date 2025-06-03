@@ -1,8 +1,12 @@
-# Project INDIGO
+# Interactive Visual Performance Exploration
 
-Anonymized technical preview: [Streamlit](https://pcp-demo.streamlit.app/)
+Supplementary material to the ACM TODAES journal article *Interactive Visual Performance Space Exploration of Operational Amplifiers with Differentiable Neural Network Surrogate Models*
 
-Source code available on [GitHub](https://github.com/AnonCod3/pcp-demo)
+:globe_with_meridians: Web-App: [Streamlit](https://ed-pcp-demo.streamlit.app/)
+
+:computer: Source code: [GitHub](https://github.com/electronics-and-drives/pcp-demo)
+
+:book: Article: TBD
 
 ## Usage
 
